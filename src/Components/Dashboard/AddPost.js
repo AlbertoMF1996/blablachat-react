@@ -12,8 +12,8 @@ class AddPost extends Component {
     }
     addPost = _ => {
         const {post} = this.state;
-        fetch(`http://localhost:3001/posts/add?text=${post.text}&img=${post.img}&id=${fire.auth().currentUser.uid}&title=${post.title}`)
-        // fetch(`http://localhost:3001/posts/add?text=${post.text}&img=${post.img}&id=1000`)
+        fetch(`https://pfc-blablachat-node.herokuapp.com/posts/add?text=${post.text}&img=${post.img}&id=${fire.auth().currentUser.uid}&title=${post.title}`)
+        // fetch(`https://pfc-blablachat-node.herokuapp.com/posts/add?text=${post.text}&img=${post.img}&id=1000`)
         .then((res) => {
             console.log('corecto')
         })

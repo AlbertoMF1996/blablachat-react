@@ -31,7 +31,7 @@ class SignUp extends Component {
                             // console.log(user.uid)
                             const uid = user.uid;
                             console.log('id: '+uid)
-                            fetch(`http://localhost:3001/users/add?id=${uid}&email=${that.state.email}&firstName=${that.state.firstName}&lastName=${that.state.lastName}&letters=${that.state.firstName[0] + that.state.lastName[0]}`)
+                            fetch(`https://pfc-blablachat-node.herokuapp.com/users/add?id=${uid}&email=${that.state.email}&firstName=${that.state.firstName}&lastName=${that.state.lastName}&letters=${that.state.firstName[0] + that.state.lastName[0]}`)
                             .catch(err => console.error(err))
                         }, 1400)
                     } else {

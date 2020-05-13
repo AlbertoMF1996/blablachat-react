@@ -49,7 +49,7 @@ class NavBar extends Component {
         const interval = setInterval(() => {
             if (fire.auth().currentUser !== null) {
                 that.setState({ currentUid: fire.auth().currentUser.uid })
-                console.log(fire.auth().currentUser.uid)
+                
                 fetch(`https://pfc-blablachat-node.herokuapp.com/data?id=${fire.auth().currentUser.uid}`)
                     .then(response => response.json())
                     .then(response => that.setState({ letters: response.data[0].letters }))

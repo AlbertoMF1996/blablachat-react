@@ -28,7 +28,7 @@ class Dashboard extends Component {
 
         const that = this
         setTimeout(function () {
-            fetch(`http://localhost:3001/posts?id=${fire.auth().currentUser.uid}`)
+            fetch(`https://pfc-blablachat-node.herokuapp.com/posts?id=${fire.auth().currentUser.uid}`)
                 .then(response => response.json())
                 .then(response => that.setState({ posts: response.data }))
                 .catch(err => console.error(err))
