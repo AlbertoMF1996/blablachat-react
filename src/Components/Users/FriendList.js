@@ -25,7 +25,7 @@ class FriendList extends Component {
 
         setTimeout(function () {
             // console.log(that.state.currentUid)
-            fetch(`http://localhost:3001/friendlist?id=${that.state.currentUid}`)
+            fetch(`https://pfc-blablachat-node.herokuapp.com/friendlist?id=${that.state.currentUid}`)
                 .then(response => response.json())
                 .then(response => that.setState({ users: response.data }))
                 .catch(err => console.error(err))
@@ -39,7 +39,7 @@ class FriendList extends Component {
                 // const list = [];
                 that.state.users.forEach(user => {
                     // console.log(user.iduser2)
-                    fetch(`http://localhost:3001/friendRequest?id=${user.iduser2}`)
+                    fetch(`https://pfc-blablachat-node.herokuapp.com/friendRequest?id=${user.iduser2}`)
                         .then(response => response.json())
                         // .then(response => console.log(response.data[0].firstName))
                         // .then(response => console.log(response.data[0]))
