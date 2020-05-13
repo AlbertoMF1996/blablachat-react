@@ -1,0 +1,96 @@
+import React, { Component } from 'react';
+import fire from '../../config/Firebase';
+import { NavLink } from 'react-router-dom';
+
+class SignUp extends Component {
+    constructor(props) {
+        super(props);
+        this.signup = this.signup.bind(this);
+        this.state = {
+            id: '',
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: ''
+        }
+    }
+
+
+    signup(e) {
+        // e.preventDefault();
+        const that = this;
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then(function () {
+                fire.auth().onAuthStateChanged(function (user) {
+                    if (user) {
+                        // User is signed in.
+                        console.log('si')
+                        // console.log(user.uid)
+
+                        setTimeout(function () {
+                            // console.log(user.uid)
+                            const uid = user.uid;
+                            console.log('id: '+uid)
+                            fetch(`http://localhost:3001/users/add?id=${uid}&email=${that.state.email}&firstName=${that.state.firstName}&lastName=${that.state.lastName}&letters=${that.state.firstName[0] + that.state.lastName[0]}`)
+                            .catch(err => console.error(err))
+                        }, 1400)
+                    } else {
+                        // No user is signed in.
+                        console.log('no')
+                    }
+                });
+
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+    }
+
+    handleChange = (e) => {
+
+        this.setState({
+            [e.target.id]: e.target.value,
+        })
+
+    }
+    handleSubmit = (e) => {
+        e.preventDefault();
+        if (this.state.email.length > 0 & this.state.password.length > 5 & this.state.firstName.length > 0 & this.state.lastName.length > 0) {
+            this.signup();
+        }
+    }
+    render() {
+        return (
+            <div className="container screen-height">
+                <form onSubmit={this.handleSubmit} className="white">
+                    <h5 className="grey-text text-darker-3">Sign Up</h5>
+                    <div className="input-field">
+                        <label htmlFor="email">Email</label>
+                        <input type="email" id="email" onChange={this.handleChange} />
+                    </div>
+                    <div className="input-field">
+                        <label htmlFor="password">Password</label>
+                        <input type="password" id="password" onChange={this.handleChange} />
+                    </div>
+                    <div className="input-field">
+                        <label htmlFor="firstName">First Name</label>
+                        <input type="text" id="firstName" onChange={this.handleChange} />
+                    </div>
+                    <div className="input-field">
+                        <label htmlFor="lastName">Last Name</label>
+                        <input type="text" id="lastName" onChange={this.handleChange} />
+                    </div>
+
+
+                    <div className="input-field">
+                        <button className="btn orange lighten-1 z-depth-0">Sign Up</button>
+                        <small className="right">Have account? <button><NavLink to="/signin"> Sign in </NavLink></button></small>
+                    </div>
+                </form>
+            </div>
+        )
+    }
+}
+
+export default SignUp

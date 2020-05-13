@@ -1,0 +1,29 @@
+.chat-container{
+    position: relative;
+    background-color:#ECECEC;
+    overflow-y: scroll;
+    height: 70vh;
+    width: 40%;
+    min-width: 350px;
+}
+
+.message{
+    /* position: relative; */
+    max-width: 300px;
+    width: max-content;
+    border: solid 6px #E3E3E3;
+    padding: 4px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    padding: 5px;
+
+}
+
+.message-left{
+    border-radius: 10px 10px 10px 0px;
+}
+
+.message-right{
+    border-radius: 10px 10px 0px 10px;
+}
