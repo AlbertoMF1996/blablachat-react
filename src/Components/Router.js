@@ -9,7 +9,6 @@ import ShowUsers from './Users/ShowUsers';
 import FriendRequest from './Users/FriendRequest';
 import Chat from './Chat/Chat';
 import FriendList from './Users/FriendList';
-import NavBar from './Layout/NavBar';
 import Error from './Layout/Error';
 import Navbar from './Layout/Nav/Navbar';
 
@@ -19,12 +18,11 @@ class Router extends Component {
     render() {
         return (
             <BrowserRouter>
-                {/* <NavBar /> */}
                 <Navbar/>
                 <Switch>
-                    <Route exact path="/" component={SignIn} />
-                    <Route exact path="/signin" component={SignIn} />
-                    <Route exact path="/signup" component={SignUp} />
+                    <Route exact path="/" component={Dashboard} />
+                    {/* <Route exact path="/signin" component={SignIn} />
+                    <Route exact path="/signup" component={SignUp} /> */}
                     <Route exact path="/dashboard" component={Dashboard} />
                     <Route exact path="/addpost" component={AddPost} />
                     <Route exact path="/showusers" component={ShowUsers} />

@@ -23,13 +23,13 @@ class FriendList extends Component {
         //     // console.log(fire.auth())
         // }, 400);
 
-        setTimeout(function () {
+        // setTimeout(function () {
             // console.log(that.state.currentUid)
             fetch(`https://pfc-blablachat-node.herokuapp.com/friendlist?id=${that.state.currentUid}`)
                 .then(response => response.json())
                 .then(response => that.setState({ users: response.data }))
                 .catch(err => console.error(err))
-        }, 600)
+        // }, 600)
 
         setTimeout(function () {
             if (that.state.users[0] === undefined) {
@@ -105,7 +105,7 @@ class FriendList extends Component {
 
                         usersData.map(user => {
                             return (
-                                <div className="row grey">
+                                <div className="row grey"key={user.id}>
                                     <div className="col-md-6">
                                         <h3>{user.letters} {user.firstName} {user.lastName}</h3>
 

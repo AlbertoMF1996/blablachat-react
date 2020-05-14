@@ -1,29 +1,11 @@
-// import React from 'react'
-
-// import "./nav.scss"
-// import Burger from './Burger'
-
-
-// const Navbar = () => {
-//     return (
-// <div id="nav" className="container">
-//     <div className="logo">
-//         NavBar
-//     </div>
-//     <Burger uid={"Uid de prueba"}/>
-// </div>
-//     )
-// }
-
-// export default Navbar
-
 
 
 import React, { Component } from 'react';
 // import SignedInLink from './SignedInLinks';
 import fire from '../../../config/Firebase';
 import { NavLink } from 'react-router-dom';
-import Burger from './Burger';
+// import Burger from './Burger';
+import "./nav.scss"
 
 
 class NavBar extends Component {
@@ -107,8 +89,8 @@ class NavBar extends Component {
                     <ul id="ulNavRight" className="close-menu-list">
                         <li><NavLink to="/addpost">New Post</NavLink></li>
                         <li><NavLink to={{ pathname: `/friendlist/${currentUid}` }}>Friends</NavLink></li>
-                        <li><NavLink to="/addpost">New Post</NavLink></li>
-                        <li onClick={this.logout}><NavLink to="/signin">Log Out</NavLink></li>
+                        <li><NavLink to="/addpost">Friends Request</NavLink></li>
+                        <li onClick={this.logout}><a>Log Out</a></li>
                         <li><NavLink to="/dashboard" className="btn btn-loating orange lighten-1">{letters}</NavLink></li>
                     </ul>
                 </div>

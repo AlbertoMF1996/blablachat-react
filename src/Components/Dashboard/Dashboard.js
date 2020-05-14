@@ -26,13 +26,16 @@ class Dashboard extends Component {
 
     getPosts = _ => {
 
-        const that = this
-        setTimeout(function () {
-            fetch(`https://pfc-blablachat-node.herokuapp.com/posts?id=${fire.auth().currentUser.uid}`)
-                .then(response => response.json())
-                .then(response => that.setState({ posts: response.data }))
-                .catch(err => console.error(err))
-        }, 800);
+        const that = this;
+        if (fire.auth().currentUser !==null) {
+            setTimeout(function () {
+                fetch(`https://pfc-blablachat-node.herokuapp.com/posts?id=${fire.auth().currentUser.uid}`)
+                    .then(response => response.json())
+                    .then(response => that.setState({ posts: response.data }))
+                    .catch(err => console.error(err))
+            }, 800);
+        }
+
     }
 
     renderPosts = ({ id, texto, imagen }) => <div key={id}>{texto}  <img src={imagen} className="img-fluid" alt="Captura" border="0"></img></div>
@@ -43,13 +46,13 @@ class Dashboard extends Component {
         console.log(hasPosts)
         if (hasPosts === false) {
             return (
-                <div className="container text-center">
+                <div className="container text-center screen-height">
                     <h1 className="font-weight-light text-muted">No tienes post aun</h1>
                 </div>
             )
         } else {
             return (
-                <div className="container p-3">
+                <div className="container p-3 screen-height">
                     {/* {posts.map(this.renderPosts)} */}
                     {
                         posts.map(post => {

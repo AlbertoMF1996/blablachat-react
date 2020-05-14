@@ -73,32 +73,11 @@ class Chat extends Component {
     }
     componentDidMount() {
 
-        // const { match } = this.props;
-        // // console.log(match.params.room)
-
-        // const splitedUrl = (match.params.room).split("-");
-        // const orderedUrl = splitedUrl.sort();
-
-        // const currentChat = `${orderedUrl[0]}${orderedUrl[1]}`
-        // this.setState({ currentChatRoom: currentChat })
-        // console.log(currentChat)
-
-        // console.log(fire.database().ref(currentChat).key)
-
-        // // fire.database().ref(currentChat).on('value', snap => {
-        // fire.database().ref(`${currentChat}`).on('value', snap => {
-        //     const currentMessages = snap.val();
-        //     if (currentMessages !== null) {
-        //         this.setState({
-        //             messages: currentMessages
-        //         })
-        //     }
-        // })
 
         setTimeout(function () {
         var div = document.getElementById("chat-container");
         div.scrollTop = div.scrollHeight;
-        }, 100)
+        }, 1000)
         // var div = document.getElementById("chat-container");
         // div.scrollTop = div.scrollHeight;
 

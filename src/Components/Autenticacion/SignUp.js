@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import fire from '../../config/Firebase';
-import { NavLink } from 'react-router-dom';
 
 class SignUp extends Component {
     constructor(props) {
@@ -61,6 +60,9 @@ class SignUp extends Component {
         }
     }
     render() {
+        const { handleState } = this.props
+
+
         return (
             <div className="container screen-height">
                 <form onSubmit={this.handleSubmit} className="white">
@@ -85,12 +87,13 @@ class SignUp extends Component {
 
                     <div className="input-field">
                         <button className="btn orange lighten-1 z-depth-0">Sign Up</button>
-                        <small className="right">Have account? <button><NavLink to="/signin"> Sign in </NavLink></button></small>
+                        <small className="right">Have account? <button onClick={handleState}>Sign in</button></small>
                     </div>
                 </form>
             </div>
         )
     }
 }
+
 
 export default SignUp
