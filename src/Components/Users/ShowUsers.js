@@ -12,7 +12,7 @@ class ShowUsers extends Component {
 
 
     getUsers = _ => {
-        fetch(`http://localhost:3001/users?nameSearch=${this.state.nameSearch}`)
+        fetch(`https://pfc-blablachat-node.herokuapp.com/users?nameSearch=${this.state.nameSearch}`)
             .then(response => response.json())
             .then(response => this.setState({ users: response.data }))
             .catch(err => console.error(err))
