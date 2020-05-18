@@ -12,7 +12,22 @@ class Dashboard extends Component {
 
     componentDidMount() {
         const that = this;
-        this.getPosts();
+        // this.getPosts();
+
+
+        const interval = setInterval(() => {
+            if (fire.auth().currentUser !== null) {
+                this.getPosts();
+
+                if (that.state.posts[0] !== undefined) {
+                    clearInterval(interval);
+                }
+            }
+        }, 1000);
+
+
+
+
         console.log(that.state.posts[0])
 
         setTimeout(function () {
@@ -21,13 +36,13 @@ class Dashboard extends Component {
                     hasPosts: true
                 })
             }
-        }, 1000);
+        }, 2000);
     }
 
     getPosts = _ => {
 
         const that = this;
-        if (fire.auth().currentUser !==null) {
+        if (fire.auth().currentUser !== null) {
             setTimeout(function () {
                 fetch(`https://pfc-blablachat-node.herokuapp.com/posts?id=${fire.auth().currentUser.uid}`)
                     .then(response => response.json())
@@ -38,7 +53,7 @@ class Dashboard extends Component {
 
     }
 
-    renderPosts = ({ id, texto, imagen }) => <div key={id}>{texto}  <img src={imagen} className="img-fluid" alt="Captura" border="0"></img></div>
+    // renderPosts = ({ id, texto, imagen }) => <div key={id}>{texto}  <img src={imagen} className="img-fluid" alt="Captura" border="0"></img></div>
 
 
     render() {
@@ -56,26 +71,41 @@ class Dashboard extends Component {
                     {/* {posts.map(this.renderPosts)} */}
                     {
                         posts.map(post => {
-                            return (
-                                // <div className="my-5">
-                                //     <h1 className="text-center">{post.texto}</h1>
-                                //     <img src={post.imagen} className="img-fluid" width="500" height="500"></img>
-                                // </div>
-                                <div className="row">
-                                    <div className="col s12 m7">
-                                        <div className="card">
-                                            <div className="card-image">
-                                                <img src={post.imagen} alt="" />
-                                                <span className="card-title">{post.titulo}</span>
-                                            </div>
-                                            <div className="card-content">
-                                                <p>{post.texto}</p>
+                            if (post.imagen !== "") {
+                                return (
+                                    // <div className="my-5">
+                                    //     <h1 className="text-center">{post.texto}</h1>
+                                    //     <img src={post.imagen} className="img-fluid" width="500" height="500"></img>
+                                    // </div>
+                                    <div className="row" key={post.id}>
+                                        <div className="col s12 m7">
+                                            <div className="card">
+                                                <div className="card-image">
+                                                    <img src={post.imagen} alt="" />
+                                                    <span className="card-title text-dark">{post.titulo}</span>
+                                                    <span>{post.imagen}</span>
+                                                </div>
+                                                <div className="card-content">
+                                                    <p>{post.texto}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            )
+                                )
+                            } else {
+                                return (
+                                    <div className="row" key={post.id}>
+                                        <div className="col s12 m7">
+                                            <div className="card">
+                                                <div className="card-content">
+                                                    <h4>{post.titulo}</h4><hr /><p>{post.texto}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            }
                         })
                     }
                 </div>

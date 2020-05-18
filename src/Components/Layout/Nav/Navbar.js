@@ -89,7 +89,7 @@ class NavBar extends Component {
                     <ul id="ulNavRight" className="close-menu-list">
                         <li><NavLink to="/addpost">New Post</NavLink></li>
                         <li><NavLink to={{ pathname: `/friendlist/${currentUid}` }}>Friends</NavLink></li>
-                        <li><NavLink to="/addpost">Friends Request</NavLink></li>
+                        <li><NavLink to={{ pathname: `/friendrequest/${currentUid}` }}>Friends Request</NavLink></li>
                         <li onClick={this.logout}><a>Log Out</a></li>
                         <li><NavLink to="/dashboard" className="btn btn-loating orange lighten-1">{letters}</NavLink></li>
                     </ul>

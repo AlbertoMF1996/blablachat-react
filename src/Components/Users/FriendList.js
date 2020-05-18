@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import fire from '../../config/Firebase';
 import { NavLink } from 'react-router-dom';
-import "./users.css"
+import "./users.scss"
 
 class FriendList extends Component {
     constructor(props) {
@@ -17,19 +17,13 @@ class FriendList extends Component {
     componentDidMount() {
         const that = this;
         const list = [];
-        // console.log(that.state.currentUid)
-        // setTimeout(function () {
-        //     that.setState({ currentUid: fire.auth().currentUser.uid })
-        //     // console.log(fire.auth())
-        // }, 400);
 
-        // setTimeout(function () {
-            // console.log(that.state.currentUid)
-            fetch(`https://pfc-blablachat-node.herokuapp.com/friendlist?id=${that.state.currentUid}`)
-                .then(response => response.json())
-                .then(response => that.setState({ users: response.data }))
-                .catch(err => console.error(err))
-        // }, 600)
+
+        fetch(`https://pfc-blablachat-node.herokuapp.com/friendlist?id=${that.state.currentUid}`)
+            .then(response => response.json())
+            .then(response => that.setState({ users: response.data }))
+            .catch(err => console.error(err))
+
 
         setTimeout(function () {
             if (that.state.users[0] === undefined) {
@@ -51,7 +45,7 @@ class FriendList extends Component {
 
             }
 
-        }, 800)
+        }, 1000)
 
 
 
@@ -72,7 +66,7 @@ class FriendList extends Component {
                 })
                 // console.log(userListaData)
             })
-        }, 1000)
+        }, 1400)
 
 
 
@@ -100,30 +94,28 @@ class FriendList extends Component {
             )
         } else {
             return (
-                <div className="container screen-height">
+                <div className="container screen-height mt-5">
+                    <div>
+                        <span>Add more friends</span>
+                        <button className="btn btn-loating orange lighten-1 material-icons"><NavLink to={{ pathname: `/showusers`}}>add</NavLink></button>
+                    </div>
                     {
 
                         usersData.map(user => {
                             return (
-                                <div className="row grey"key={user.id}>
-                                    <div className="col-md-6">
-                                        <h3>{user.letters} {user.firstName} {user.lastName}</h3>
+                                <div className="row border friend-row" key={user.id}>
+                                    <div className="col-md-9 align-self-center">
+                                        <p>{user.letters} {user.firstName} {user.lastName}</p>
 
                                     </div>
-                                    <div className="col-md-3 pink">
-                                        <NavLink to={{ pathname: `/chatroom/${user.id}-${currentUid}` }} className="material-icons size-icon">chat</NavLink>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <span className="material-icons size-icon"> chat </span>
+                                    <div className="col-md-3 align-self-center">
+                                        <button className="btn btn-loating orange lighten-1 material-icons"><NavLink to={{ pathname: `/chatroom/${user.id}-${currentUid}` }}>chat</NavLink></button>
                                     </div>
                                 </div>
                             )
                         })
                     }
-                    <div>
-                        <span>Add more friends</span>
-                        <NavLink to={{ pathname: `/showusers` }} className="ml-2">Add</NavLink>
-                    </div>
+
 
 
                 </div>

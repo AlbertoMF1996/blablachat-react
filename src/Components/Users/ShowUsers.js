@@ -10,7 +10,6 @@ class ShowUsers extends Component {
         }
     }
 
-
     getUsers = _ => {
         fetch(`https://pfc-blablachat-node.herokuapp.com/users?nameSearch=${this.state.nameSearch}`)
             .then(response => response.json())
@@ -33,18 +32,28 @@ class ShowUsers extends Component {
     }
 
 
-    renderUsers = ({ id, firstName, lastName }) =>
-        <div key={id} className="mt-3">Usuario con nombre: {firstName} y apellido: {lastName} <button id={id}  className="ml-2" onClick={this.sendFriendRequest}>Prueba</button></div>
-
+    renderUsers = ({ id, firstName, lastName, letters }) =>
+        <div className="row border">
+            <div className="col-8 align-self-center">
+                <div key={id} className="mt-3 d-flex container users-list"><p><span className="btn btn-loating orange lighten-1 mr-3">{letters}</span>{firstName} {lastName} </p></div>
+            </div>
+            <div className="col-4 add-button align-self-center">
+                <button id={id} className="ml-2" onClick={this.sendFriendRequest}>+</button>
+            </div>
+        </div>
 
     render() {
         const { users } = this.state;
         return (
-            <div className="container mt-3 screen-height">
-                <input type="text" id="nameSearch" onChange={this.handleChange} />
-                <button onClick={this.getUsers}>Search</button>
-                {users.map(this.renderUsers)}
+            <div className="screen-height container">
+                <div className=" mt-3 d-flex container">
+                    <input type="text" id="nameSearch" onChange={this.handleChange} />
+                    <button className="btn btn-loating orange lighten-1 material-icons ml-5" onClick={this.getUsers}>search</button>
+                </div>
 
+                <div className="mt-4">
+                    {users.map(this.renderUsers)}
+                </div>
             </div>
         );
     }

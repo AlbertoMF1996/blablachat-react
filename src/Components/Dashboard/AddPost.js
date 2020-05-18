@@ -12,27 +12,31 @@ class AddPost extends Component {
     }
     addPost = _ => {
         const {post} = this.state;
-        fetch(`https://pfc-blablachat-node.herokuapp.com/posts/add?text=${post.text}&img=${post.img}&id=${fire.auth().currentUser.uid}&title=${post.title}`)
-        // fetch(`https://pfc-blablachat-node.herokuapp.com/posts/add?text=${post.text}&img=${post.img}&id=1000`)
-        .then((res) => {
-            console.log('corecto')
-        })
-        .catch(err => console.error(err+"asdasdas"))
+
+        if(this.handleUpload()){
+            fetch(`https://pfc-blablachat-node.herokuapp.com/posts/add?text=${post.text}&img=${post.img}&id=${fire.auth().currentUser.uid}&title=${post.title}`)
+            .then((res) => {
+                alert("Successfully added")
+            })
+            .catch(err => console.error(err))
+        }else{
+            alert("Can't add empty post")
+        }
+    }
+
+    handleUpload(){
+        var { title, text, img } = this.state.post;
+        if(title==="" && text==="" && img===""){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 
 
     render() {
-        // const uid = '';
-        // fire.auth().onAuthStateChanged(function(user) {
-        //     if (user) {
-        //       // User is signed in.
-        //       console.log(user.uid);
-        //     } else {
-        //       // No user is signed in.
-        //       console.log('else');
-        //     }
-        //   });
+
 
         // console.log(uid)
         const { post } = this.state;
@@ -51,9 +55,13 @@ class AddPost extends Component {
                 <div className="input-field">
                     <label htmlFor="image">Image</label>
                     <input type="text" id="img" placeholder="click link / login / upload photo / go 'direct link' / copy link here " value={post.img} onChange={e => this.setState({ post: { ...post, img: e.target.value } })} />
+                    <small className="right"><a href="https://imgbb.com/" target="_blank">Img</a></small>
                 </div>
 
                 <button onClick={this.addPost}>Add Post</button>
+
+
+                
             </div>
         )
     }

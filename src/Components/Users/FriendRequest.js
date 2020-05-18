@@ -45,7 +45,7 @@ class FriendRequest extends Component {
 
                         // console.log(fullList)
                         fullList.forEach(id => {
-                            fetch(`http://localhost:3001/friendRequest?id=${id}`)
+                            fetch(`https://pfc-blablachat-node.herokuapp.com/friendRequest?id=${id}`)
                                 .then(response => response.json())
                                 // .then(response => console.log(response.data[0]))
                                 .then(response => this.setState({ usersData: [...this.state.usersData, response.data] }))
@@ -63,9 +63,9 @@ class FriendRequest extends Component {
     }
 
     acceptRequest = (e) => {
-        fetch(`http://localhost:3001/addfriend?id1=${fire.auth().currentUser.uid}&id2=${e.target.id}`)
+        fetch(`https://pfc-blablachat-node.herokuapp.com/addfriend?id1=${fire.auth().currentUser.uid}&id2=${e.target.id}`)
             .catch(err => console.error(err))
-        fetch(`http://localhost:3001/addfriend?id2=${fire.auth().currentUser.uid}&id1=${e.target.id}`)
+        fetch(`https://pfc-blablachat-node.herokuapp.com/addfriend?id2=${fire.auth().currentUser.uid}&id1=${e.target.id}`)
             .catch(err => console.error(err))
 
         console.log(fire.auth().currentUser.uid);
@@ -118,9 +118,10 @@ class FriendRequest extends Component {
         console.log(this.state.usersData.length)
         if (this.state.usersData.length === 0) {
             return (
-                <div className="container text-center">
-                    <h1 className="font-weight-light text-muted">No tienes post aun</h1>
-                    <button><NavLink to="/showusers"> Friend request </NavLink></button>
+                <div className="container text-center screen-height">
+                    <h1 className="font-weight-light text-muted">You haven't friend request</h1>
+                    <h2>Search friends!</h2>
+                    <button><NavLink to="/showusers"> Add friends </NavLink></button>
                 </div>
 
             )
