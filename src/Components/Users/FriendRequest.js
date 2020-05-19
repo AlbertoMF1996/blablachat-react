@@ -39,6 +39,7 @@ class FriendRequest extends Component {
         const interval = setInterval(() => {
             if (fire.auth().currentUser !== null) {
                 this.db.on('value', snap => {
+                    this.setState({ usersData: []})
                     // console.log(snap.val())
                     if (snap.val() !== null) {
                         const fullList = Object.values(snap.val()).slice(",")
@@ -68,54 +69,52 @@ class FriendRequest extends Component {
         fetch(`https://pfc-blablachat-node.herokuapp.com/addfriend?id2=${fire.auth().currentUser.uid}&id1=${e.target.id}`)
             .catch(err => console.error(err))
 
-        console.log(fire.auth().currentUser.uid);
         this.db.on('value', snap => {
             if (snap.val() !== null) {
                 const fullList = snap.val()
                 const keys = Object.keys(fullList)
                 const values = Object.values(fullList)
-                console.log(keys)
-                console.log(values)
+
 
                 for (var i = 0; i < values.length; i++) {
-                    console.log("entro en el for")
-                    console.log(typeof values[i].toString());
-                    console.log(typeof e.target.id);
+
                     if (values[i].toString() === e.target.id) {
-                        console.log("Entro en el if " + keys[i])
                         this.db.child(keys[i]).remove();
                     }
                 }
             }
         });
+
+        alert("successfully added");
 
     }
 
 
     rejectRequest = (e) => {
-        this.db.on('value', snap => {
-            if (snap.val() !== null) {
-                const fullList = snap.val()
-                const keys = Object.keys(fullList)
-                const values = Object.values(fullList)
-                console.log(keys)
-                console.log(values)
+        console.log(e);
+        var confirmValue = window.confirm("Do you want to delete contact?");
 
-                for (var i = 0; i < values.length; i++) {
-                    console.log("entro en el for")
-                    console.log(typeof values[i].toString());
-                    console.log(typeof e.target.id);
-                    if (values[i].toString() === e.target.id) {
-                        console.log("Entro en el if " + keys[i])
-                        this.db.child(keys[i]).remove();
+        if(confirmValue){
+            this.db.on('value', snap => {
+                if (snap.val() !== null) {
+                    const fullList = snap.val()
+                    const keys = Object.keys(fullList)
+                    const values = Object.values(fullList)
+    
+                    for (var i = 0; i < values.length; i++) {
+                        if (e.target !== null && values[i].toString() === e.target.id) {
+                            this.db.child(keys[i]).remove();
+                        }
                     }
                 }
-            }
-        });
+            });
+
+        }
+
     }
 
     render() {
-        console.log(this.state.usersData.length)
+        // console.log(this.state.usersData.length)
         if (this.state.usersData.length === 0) {
             return (
                 <div className="container text-center screen-height">
@@ -128,21 +127,32 @@ class FriendRequest extends Component {
         }
         if (this.state.currentUid.length !== 0) {
             return (
-                <div>
-                    <ul>
-                        {
-                            this.state.usersData.map(user => {
-                                return (
-                                    <div id={user[0].id}>
-                                        <h1>{user[0].firstName}</h1>
-                                        <h1>{user[0].lastName}</h1>
-                                        <button id={user[0].id} className="btn" onClick={this.acceptRequest}>Add</button>
-                                        <button id={user[0].id} className="btn" onClick={this.rejectRequest}>Reject</button>
-                                    </div>
-                                )
-                            })
-                        }
-                    </ul>
+                <div className="container screen-height mt-5">
+                    <div>
+                        <ul>
+                            {
+                                this.state.usersData.map(user => {
+                                    return (
+                                        <div id={user[0].id} className="row mt-3 border friend-row">
+                                            <div className="col-6 d-flex">
+                                                <p>{user[0].firstName}</p>
+                                                <p className="ml-2">{user[0].lastName}</p>
+                                            </div>
+
+                                            <div className="col-3 align-self-center">
+                                                <button id={user[0].id} className="btn btn-loating orange lighten-1 ml-2 material-icons right" onClick={this.acceptRequest}>add</button>
+                                            </div>
+
+                                            <div className="col-3 align-self-center">
+                                                <button id={user[0].id} className="btn btn-loating orange lighten-1 ml-2 material-icons right" onClick={this.rejectRequest}>not_interested</button>
+                                            </div>
+
+                                        </div>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
                 </div>
             )
         }

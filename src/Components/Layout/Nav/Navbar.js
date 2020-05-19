@@ -31,7 +31,7 @@ class NavBar extends Component {
         const interval = setInterval(() => {
             if (fire.auth().currentUser !== null) {
                 that.setState({ currentUid: fire.auth().currentUser.uid })
-                
+
                 fetch(`https://pfc-blablachat-node.herokuapp.com/data?id=${fire.auth().currentUser.uid}`)
                     .then(response => response.json())
                     .then(response => that.setState({ letters: response.data[0].letters }))
@@ -79,8 +79,9 @@ class NavBar extends Component {
             <div className="nav-wrapper grey darken-3">
                 <div id="nav" className="container nav-wrapper px-5">
                     <div className="logo">
-                        BlaBlaChat
-                </div>
+                    <NavLink to="/dashboard">BlaBlaChat</NavLink>
+                        {/* BlaBlaChat */}
+                    </div>
                     <div id="burguerStyle" className="close-menu" onClick={this.handleClick}>
                         <div />
                         <div />

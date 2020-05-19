@@ -87,17 +87,21 @@ class FriendList extends Component {
         // console.log(hasFriends)
         if (hasFriends === false) {
             return (
-                <div className="screen-height">
-                    <h1>Añade algun amigo, Ransio</h1>
-                    <button><NavLink to={{ pathname: `/friendrequest/${currentUid}` }}> Friend request </NavLink></button>
+                <div className="container text-center screen-height">
+                    <h1 className="font-weight-light text-muted">You haven't friend yet </h1>
+                    <span className="d-flex justify-content-center">
+                        <h2 className="align-self-center m-0">Search friends!</h2>
+                        <button className="btn btn-loating orange lighten-1 material-icons align-self-center ml-5"><NavLink to="/showusers"> add </NavLink></button>
+                    </span>
+
                 </div>
             )
         } else {
             return (
                 <div className="container screen-height mt-5">
-                    <div>
+                    <div className="mb-3">
                         <span>Add more friends</span>
-                        <button className="btn btn-loating orange lighten-1 material-icons"><NavLink to={{ pathname: `/showusers`}}>add</NavLink></button>
+                        <button className="btn btn-loating orange lighten-1 material-icons ml-3"><NavLink to={{ pathname: `/showusers` }}>add</NavLink></button>
                     </div>
                     {
 
@@ -105,11 +109,11 @@ class FriendList extends Component {
                             return (
                                 <div className="row border friend-row" key={user.id}>
                                     <div className="col-md-9 align-self-center">
-                                        <p>{user.letters} {user.firstName} {user.lastName}</p>
+                                        <p><span className="btn btn-loating orange lighten-1 mr-3">{user.letters}</span>{user.firstName} {user.lastName}</p>
 
                                     </div>
                                     <div className="col-md-3 align-self-center">
-                                        <button className="btn btn-loating orange lighten-1 material-icons"><NavLink to={{ pathname: `/chatroom/${user.id}-${currentUid}` }}>chat</NavLink></button>
+                                        <button className="btn btn-loating orange lighten-1 material-icons right"><NavLink to={{ pathname: `/chatroom/${user.id}-${currentUid}` }}>chat</NavLink></button>
                                     </div>
                                 </div>
                             )

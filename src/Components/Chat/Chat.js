@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import fire from '../../config/Firebase';
-import './chat.css';
+import './chat.scss';
 
 class Chat extends Component {
 

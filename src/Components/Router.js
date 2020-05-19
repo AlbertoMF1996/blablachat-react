@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import SignIn from '../Components/Autenticacion/SignIn';
-import SignUp from '../Components/Autenticacion/SignUp';
 import Dashboard from '../Components/Dashboard/Dashboard';
 import AddPost from './Dashboard/AddPost';
 import ShowUsers from './Users/ShowUsers';
