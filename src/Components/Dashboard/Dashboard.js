@@ -62,7 +62,7 @@ class Dashboard extends Component {
         if (hasPosts === false) {
             return (
                 <div className="container text-center screen-height">
-                    <h1 className="font-weight-light text-muted">No tienes post aun</h1>
+                    <h1 className="font-weight-light text-muted">You haven't friend yet </h1>
                 </div>
             )
         } else {
