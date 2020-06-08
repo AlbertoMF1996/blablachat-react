@@ -16,58 +16,62 @@ class SignUp extends Component {
 
 
     signup(e) {
-        // e.preventDefault();
-        // const that = this;
-        // fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-        //     .then(function () {
-        //         fire.auth().onAuthStateChanged(function (user) {
-        //             if (user) {
-        //                 // User is signed in.
-        //                 console.log('si')
-        //                 // console.log(user.uid)
+        if (this.signUpErrorHandle() !== "") {
 
-        //                 setTimeout(function () {
-        //                     // console.log(user.uid)
-        //                     const uid = user.uid;
-        //                     console.log('id: '+uid)
-        //                     fetch(`https://pfc-blablachat-node.herokuapp.com/users/add?id=${uid}&email=${that.state.email}&firstName=${that.state.firstName}&lastName=${that.state.lastName}&letters=${that.state.firstName[0] + that.state.lastName[0]}`)
-        //                     .catch(err => console.error(err))
-        //                 }, 1400)
-        //             } else {
-        //                 // No user is signed in.
-        //                 console.log('no')
-        //             }
-        //         });
 
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     })
+            // e.preventDefault();
+            const that = this;
+            fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+                .then(function () {
+                    fire.auth().onAuthStateChanged(function (user) {
+                        if (user) {
+                            // User is signed in.
+                            console.log('si')
+                            // console.log(user.uid)
 
-        this.signUpErrorHandle();
+                            setTimeout(function () {
+                                // console.log(user.uid)
+                                const uid = user.uid;
+                                console.log('id: ' + uid)
+                                fetch(`https://pfc-blablachat-node.herokuapp.com/users/add?id=${uid}&email=${that.state.email}&firstName=${that.state.firstName}&lastName=${that.state.lastName}&letters=${that.state.firstName[0] + that.state.lastName[0]}`)
+                                    .catch(err => console.error(err))
+                            }, 1400)
+                        } else {
+                            // No user is signed in.
+                            console.log('no')
+                        }
+                    });
+
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
 
     }
 
-    signUpErrorHandle(){
-        var { email, password, firstName, lastName} = this.state;
+    signUpErrorHandle() {
+        var { email, password, firstName, lastName } = this.state;
 
-        var error ="";
+        var error = "";
 
-        if(email.length === 0){
-            error = error+"-Fill email \n";
+        if (email.length === 0) {
+            error = error + "-Fill email \n";
         }
-        if(password.length === 0 || password.length <6){
-            error = error +"-Passwords must have at least 6 characters \n";
+        if (password.length === 0 || password.length < 6) {
+            error = error + "-Password must have at least 6 characters \n";
         }
 
-        if(firstName.length === 0){
+        if (firstName.length === 0) {
             error = error + "-Fill first name \n";
         }
 
-        if(lastName.length === 0){
+        if (lastName.length === 0) {
             error = error + "-Fill last name \n";
         }
-        alert(error);
+        if (error !== "") {
+            alert(error);
+        }
     }
 
     handleChange = (e) => {
@@ -80,7 +84,7 @@ class SignUp extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         // if (this.state.email.length > 0 & this.state.password.length > 5 & this.state.firstName.length > 0 & this.state.lastName.length > 0) {
-            this.signup();
+        this.signup();
         // }
     }
     render() {

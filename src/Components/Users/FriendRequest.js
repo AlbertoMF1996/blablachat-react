@@ -120,7 +120,7 @@ class FriendRequest extends Component {
                 <div className="container text-center screen-height">
                     <h1 className="font-weight-light text-muted">You haven't friend request</h1>
                     <h2>Search friends!</h2>
-                    <button><NavLink to="/showusers"> Add friends </NavLink></button>
+                    <button className="btn btn-loating orange lighten-1"><NavLink to="/showusers"> Add friends </NavLink></button>
                 </div>
 
             )

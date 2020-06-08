@@ -82,8 +82,7 @@ class Dashboard extends Component {
                                             <div className="card">
                                                 <div className="card-image">
                                                     <img src={post.imagen} alt="" />
-                                                    <span className="card-title text-dark">{post.titulo}</span>
-                                                    <span>{post.imagen}</span>
+                                                    <span className="card-title">{post.titulo}</span>
                                                 </div>
                                                 <div className="card-content">
                                                     <p>{post.texto}</p>

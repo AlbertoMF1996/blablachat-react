@@ -17,6 +17,8 @@ class ShowUsers extends Component {
             .catch(err => console.error(err))
 
         this.render();
+
+
     }
 
     handleChange = (e) => {
@@ -28,17 +30,17 @@ class ShowUsers extends Component {
     sendFriendRequest = (e) => {
         const firebaseRef = fire.database().ref();
         firebaseRef.child(e.target.id).push(fire.auth().currentUser.uid)
-        alert("request sent successfully");
+        alert("Request sent successfully");
     }
 
 
     renderUsers = ({ id, firstName, lastName, letters }) =>
-        <div className="row border">
+        <div className="row border" key={id}>
             <div className="col-8 align-self-center">
                 <div key={id} className="mt-3 d-flex container users-list"><p><span className="btn btn-loating orange lighten-1 mr-3">{letters}</span>{firstName} {lastName} </p></div>
             </div>
             <div className="col-4 add-button align-self-center">
-                <button id={id} className="ml-2" onClick={this.sendFriendRequest}>+</button>
+                <button id={id} className="btn btn-loating orange lighten-1 material-icons ml-2" onClick={this.sendFriendRequest}>add</button>
             </div>
         </div>
 

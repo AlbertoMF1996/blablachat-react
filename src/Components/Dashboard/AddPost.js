@@ -26,6 +26,9 @@ class AddPost extends Component {
 
     handleUpload(){
         var { title, text, img } = this.state.post;
+        if(title===""){
+            return false;
+        }
         if(title==="" && text==="" && img===""){
             return false;
         }else{
@@ -54,11 +57,11 @@ class AddPost extends Component {
 
                 <div className="input-field">
                     <label htmlFor="image">Image</label>
-                    <input type="text" id="img" placeholder="click link / login / upload photo / go 'direct link' / copy link here " value={post.img} onChange={e => this.setState({ post: { ...post, img: e.target.value } })} />
-                    <small className="right"><a href="https://imgbb.com/" target="_blank">Img</a></small>
+                    <input type="text" id="img" placeholder="click 'Img' / login / upload photo / go 'direct link' / copy link here " value={post.img} onChange={e => this.setState({ post: { ...post, img: e.target.value } })} />
+                    <small className="right"><a className="text-secondary" href="https://imgbb.com/" target="_blank">Img</a></small>
                 </div>
 
-                <button onClick={this.addPost}>Add Post</button>
+                <button className="btn btn-loating orange lighten-1" onClick={this.addPost}>Add Post</button>
 
 
                 

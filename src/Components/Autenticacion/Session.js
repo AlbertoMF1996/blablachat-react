@@ -21,11 +21,12 @@ class Session extends Component {
 
         if (signUp) {
             return (
-                <SignUp handleState={this.handleState}/>
+                
+                <SignIn handleState={this.handleState}/>
             )
         } else {
             return(
-                <SignIn handleState={this.handleState}/>
+                <SignUp handleState={this.handleState}/>
             )
 
         }

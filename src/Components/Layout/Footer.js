@@ -8,15 +8,17 @@ class Footer extends Component {
             <footer className="page-footer grey darken-3 mt-3 mb-0 dynamic-height">
                 <div className="container">
                     <div className="row">
-                        <div className="col l6 s12">
-                            <h5 className="white-text">Footer Content</h5>
-                            <p className="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                        <div className="col-6">
+                            <h5 className="white-text">Contat us</h5>
+                            <p className="grey-text text-lighten-4">For any suggestion, pls contact us here: suggention@blablachat.com</p>
+
                         </div>
-                        <div className="col l4 offset-l2 s12">
-                            <h5 className="white-text">Links</h5>
+
+                        <div className="col-6">
                             <ul>
-                                <li><a className="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                                <li><a className="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                                <li><a href="#!">About Blablachat</a></li>
+                                <li><a href="#!">About developers</a></li>
+                                <li><a href="#!">Help</a></li>
                             </ul>
                         </div>
                     </div>

@@ -124,7 +124,7 @@ class Chat extends Component {
                 <form onSubmit={this.handleSubmit} className="d-flex">
                     <input id="message" type="text" value={this.state.message} onChange={this.updateMessage} />
 
-                    <button type="submit" className="ml-3">Send</button>
+                    <button type="submit" className="btn btn-loating orange lighten-1 ml-3">Send</button>
                 </form>
             </div>
         );
