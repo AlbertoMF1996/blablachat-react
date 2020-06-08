@@ -11,12 +11,17 @@ class ShowUsers extends Component {
     }
 
     getUsers = _ => {
-        fetch(`https://pfc-blablachat-node.herokuapp.com/users?nameSearch=${this.state.nameSearch}`)
-            .then(response => response.json())
-            .then(response => this.setState({ users: response.data }))
-            .catch(err => console.error(err))
+        if (this.state.nameSearch !== "") {
+            fetch(`https://pfc-blablachat-node.herokuapp.com/users?nameSearch=${this.state.nameSearch}`)
+                .then(response => response.json())
+                .then(response => this.setState({ users: response.data }))
+                .catch(err => console.error(err))
 
-        this.render();
+            this.render();
+        }else{
+            alert("Write one name")
+        }
+
 
 
     }
