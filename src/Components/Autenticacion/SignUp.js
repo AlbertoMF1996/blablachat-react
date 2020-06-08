@@ -16,10 +16,8 @@ class SignUp extends Component {
 
 
     signup(e) {
-        if (this.signUpErrorHandle() !== "") {
+        if (this.signUpErrorHandle()) {
 
-
-            // e.preventDefault();
             const that = this;
             fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
                 .then(function () {
@@ -71,7 +69,11 @@ class SignUp extends Component {
         }
         if (error !== "") {
             alert(error);
+            return false;
+        }else{
+            return true;
         }
+        
     }
 
     handleChange = (e) => {
