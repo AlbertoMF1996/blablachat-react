@@ -134,16 +134,16 @@ class FriendRequest extends Component {
                                 this.state.usersData.map(user => {
                                     return (
                                         <div id={user[0].id} className="row mt-3 border friend-row">
-                                            <div className="col-6 d-flex">
+                                            <div className="col-md-6 d-flex">
                                                 <p>{user[0].firstName}</p>
                                                 <p className="ml-2">{user[0].lastName}</p>
                                             </div>
 
-                                            <div className="col-3 align-self-center">
+                                            <div className="col-md-3 align-self-center">
                                                 <button id={user[0].id} className="btn btn-loating orange lighten-1 ml-2 material-icons right" onClick={this.acceptRequest}>add</button>
                                             </div>
 
-                                            <div className="col-3 align-self-center">
+                                            <div className="col-md-3 mt-md-3 align-self-center">
                                                 <button id={user[0].id} className="btn btn-loating orange lighten-1 ml-2 material-icons right" onClick={this.rejectRequest}>not_interested</button>
                                             </div>
 
