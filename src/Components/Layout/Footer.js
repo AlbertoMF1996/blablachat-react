@@ -15,6 +15,7 @@ class Footer extends Component {
                         </div>
 
                         <div className="col-6">
+                            <h5>Info</h5>
                             <ul>
                                 <li><a href="#!">About Blablachat</a></li>
                                 <li><a href="#!">About developers</a></li>
