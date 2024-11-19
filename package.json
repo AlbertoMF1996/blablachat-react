@@ -11,7 +11,7 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "firebase": "^7.14.3",
+    "firebase": "^10.9.0",
     "jest-styled-components": "^7.0.0",
     "mysql": "^2.18.1",
     "node-sass": "^4.14.1",
